@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Location Vehicule</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+
+	<b:navBar fixed="top" brand="Location Vehicules" brandHref="#"
+		inverse="true">
+		 <h:form>
+		<b:navbarLinks rendered="#{clientController.isLogged()}">
+			  <li> <h:commandLink action="index.xhtml?faces-redirect=true" value="Nos Vehicules"></h:commandLink></li>
+		  <li> <h:commandLink action="signup.xhtml" value="signup"></h:commandLink></li>
+       	  <li> <h:commandLink action="login.xhtml" value="login"></h:commandLink></li>
+		
+		</b:navbarLinks> 
+		
+		<b:navbarLinks rendered="#{clientController.isLogged()}">
+		  <li> <h:commandLink action="#{vehiculeController.index()}" value="Nos Vehicules"></h:commandLink></li>
+		  <li> <h:commandLink action="#{reservationController.Mes_reservations()}" value="Mes reservations"></h:commandLink></li>
+       	  <li> <h:commandLink action="#{clientController.logout}" value="logout"></h:commandLink></li>
+		</b:navbarLinks>
+		</h:form>
+		
+	</b:navBar>
+
+
+
+
+	<b:jumbotron class="image12">
+		<b:container>
+			<h1>Location Vehicules</h1>
+			<p>Location de voiture et de véhicule utilitaire partout dans le
+				monde à partir de 29 Euros / jour. Chez LocV réservez votre véhicule
+				en ligne à des prix avantageux.</p>
+		</b:container>
+
+	</b:jumbotron>
+ 
+	<b:container layout="fluid">
+		<b:row>
+		 
+  		<ui:repeat value="#{vehiculeController.AfficherVehicules()}" var="vehicule" >
+			<b:column span="4">
+				<div class="span1div">
+				
+				 <img  
+						src="#{request.contextPath}/uploads/#{vehicule.photo}" />
+				</div>
+				<div class="label1">
+					<h:outputText
+						value="#{vehicule.marque}" />
+					
+				</div>
+				<div class="label1">
+					<h:outputText
+						value="#{vehicule.nbrPlace}" /> Places
+					
+				</div>
+			 
+		   <h:form>  
+             <input type="hidden" name="matricule" value="#{vehicule.matricule}" />
+            <h:commandButton icon="glyphicon glyphicon-log-in" class="btn btn-primary botton-class " value="Reserver" action="#{vehiculeController.Reserver()}"/>  
+          </h:form>
+			
+			 
+			</b:column>
+			
+		</ui:repeat>	
+		</b:row>
+		
+	</b:container>
+	<footer>
+		<p>© location vehicules 2016</p>
+	</footer>
+</h:body>
+
+</html>

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>SignUp</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+	<b:navBar fixed="top" brand="Location Vehicules" brandHref="#"
+		inverse="true">
+		 <h:form>
+		<b:navbarLinks rendered="#{clientController.isLogged()}">
+			  <li> <h:commandLink action="index.xhtml?faces-redirect=true" value="Nos Vehicules"></h:commandLink></li>
+		  <li> <h:commandLink action="signup.xhtml" value="signup"></h:commandLink></li>
+       	  <li> <h:commandLink action="login.xhtml" value="login"></h:commandLink></li>
+		 
+		</b:navbarLinks>
+		
+		<b:navbarLinks rendered="#{ clientController.isLogged()}">
+		  <li> <h:commandLink action="#{vehiculeController.index()}" value="Nos Vehicules"></h:commandLink></li>
+		  <li> <h:commandLink action="#{reservationController.Mes_reservations()}" value="Mes reservations"></h:commandLink></li>
+       	  <li> <h:commandLink action="#{clientController.logout}" value="logout"></h:commandLink></li>
+		</b:navbarLinks>
+		</h:form>
+		
+	</b:navBar>
+
+	<b:container layout="fluid">
+		<div class="div-con">
+			<b:row>
+			<br/>
+				<b:column span="4">
+				 </b:column>
+				<b:column span="5">	
+				<div class="divInscription">
+							<h2>
+							Inscrivez-vous ici</h2>
+							<p>Merci d'entrer vos informations ici</p>
+							<h:form>
+							  <b:messages errorStyle="true" globalOnly="true" style="color:red; list-style-type:none; padding:0;"/>
+						
+							<h:outputLabel value="Nom d'utilisateur" />
+							<b:message for="clientname"></b:message>
+							<b:inputText id="clientname"  value="#{clientController.client.nom}" requiredMessage="Ce champs est requis" required="true" />
+							<h:outputLabel value="Prénom d'utilisateur" />
+							
+							<b:inputText value="#{clientController.client.prenom}" />
+							<h:outputLabel value="Adresse" />
+							<b:inputText value="#{clientController.client.adresse}" />
+							<h:outputLabel value="Numero CIN" />
+							<b:message for="cin"></b:message>
+							<b:inputText id="cin"  value="#{clientController.client.cin}"  requiredMessage="Ce champs est requis" required="true"  />
+							<h:outputLabel value="E-mail" />
+							<b:message for="email"></b:message>
+							<b:inputText id="email" value="#{clientController.client.email}" requiredMessage="Ce champs est requis" required="true"  />
+							<h:outputLabel value="Numéro Téléphone" />
+							<b:inputText value="#{clientController.client.numTel}" />
+							<h:outputLabel value="Mot de passe" />
+							<b:message for="password"></b:message>
+							<b:inputSecret id="password" value="#{clientController.client.password}" requiredMessage="Ce champs est requis" required="true"  />
+					  <h:commandButton icon="glyphicon glyphicon-log-in" class="btn btn-primary botton-class " value="Valider" action="#{clientController.inscrire()}"/>  
+        
+          			</h:form>
+          			</div>
+				</b:column>
+			</b:row>
+		</div>
+	</b:container>
+	<footer>
+		<p>© location vehicules 2016</p>
+	</footer>
+</h:body>
+
+</html>

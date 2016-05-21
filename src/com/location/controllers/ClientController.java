@@ -34,6 +34,11 @@ public class ClientController implements Serializable {
 	public static void sayHi() {
 		System.out.println("hiiiiiiiiiii");
 	}
+
+	public static void sayHello() {
+		System.out.println("hiiiiiiiiiii");
+		System.out.println("hello");
+	}
 	
 	public String login() {
 		Client c = service.findByLoginPass(client.getEmail(),
